@@ -5,11 +5,12 @@
 geographical data.
 """
 
-from .utils import sorted_by_key  # noqa
+from .utils import sorted_by_key
 from haversine import haversine, Unit
 
 
 def distance(coord, p): # increase readability
+    
     return haversine(coord, p)
     
 ### Task 1C
@@ -17,10 +18,10 @@ def distance(coord, p): # increase readability
 # remember distance between two geo points is computed by haversine
 def stations_within_radius(stations, centre, r):
     """Returns a list of stations within radius r of a given co-ordinate.
-    
+
     Params:
-        Stations - List of Stations to be Filtered
-        Centre - The coordinate around which the radius is measured. The 'search parameter'.
+        Stations - List of Stations to be Filtered. \n
+        Centre - The coordinate around which the radius is measured. The 'search parameter'. \n
         R - The radius by which the function filters in km.
     """
     result = []

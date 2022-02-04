@@ -18,12 +18,19 @@ def run():
     furthest = stations_distance_list[-10:]
 
     # Create list of tuples containing name, town, distance
-    #B_list = []
+    closest_list = []
+    furthest_list = []
+
     for tuple in closest:
-        print("Closest 10:", tuple[0].name, tuple[1])
+        entry = tuple[0].name, tuple[0].town, tuple[1]
+        closest_list.append(entry)
 
     for tuple in furthest:
-        print("Furthest 10:", tuple[0].name, tuple[1])
+        entry = tuple[0].name, tuple[0].town, tuple[1]
+        furthest_list.append(entry)
+
+    print("Closest 10:", closest_list)
+    print("Furthest 10:", furthest_list)
 
 
 if __name__ == "__main__":

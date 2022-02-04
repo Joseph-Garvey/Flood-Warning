@@ -6,7 +6,7 @@ geographical data.
 """
 
 from .utils import sorted_by_key
-from haversine import haversine, Unit
+from haversine import haversine
 
 
 def distance(coord, p): # increase readability

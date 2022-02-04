@@ -7,6 +7,9 @@ for manipulating/modifying station data
 """
 
 
+from sqlalchemy import true
+
+
 class MonitoringStation:
     """This class represents a river level monitoring station"""
 
@@ -38,3 +41,13 @@ class MonitoringStation:
         d += "   river:         {}\n".format(self.river)
         d += "   typical range: {}".format(self.typical_range)
         return d
+
+    # Custom '<' operator (method)
+    """Returns true if self is earlier in alphabetical order."""
+    def __lt__(self, other):
+        return self.name < other.name
+
+    # Custom '>' operator (method)
+    """Returns true if self is later in alphabetical order."""
+    def __gt__(self, other):
+        return self.name > other.name

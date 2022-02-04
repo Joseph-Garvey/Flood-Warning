@@ -6,7 +6,7 @@ geographical data.
 
 """
 
-from .utils import sorted_by_key  # noqa
+from utils import sorted_by_key  # noqa
 from haversine import haversine, Unit
 
 
@@ -26,5 +26,6 @@ def stations_by_distance(stations, p):
         stations_and_distance.append(distance_tuple)
 
     # Sort list by distance
+    sorted_by_key(stations_and_distance, 2)
 
     return stations_and_distance

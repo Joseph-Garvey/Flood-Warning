@@ -63,8 +63,8 @@ def stations_by_distance(stations, p):
 # return container with names of rivers with a monitoring station
 # should not return duplicates, use set
 def rivers_with_station(stations):
-    rivers = {} # set
+    rivers = set() # set
     for station in stations: # iterate and add rivers to set
-        rivers += station.river
+        rivers.add(station.river)
     return rivers
 #endregion

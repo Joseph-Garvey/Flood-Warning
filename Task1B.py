@@ -3,15 +3,13 @@ from floodsystem.geo import stations_by_distance
 
 
 def run():
-    """Requirements for Task 1B"""
+    """Task 1B: prints a list of tuples (station name, town, distance) for the 10 closest and the 10 furthest stations from the Cambridge city centre, (52.2053, 0.1218)"""
 
     # Build list of stations
     stations = build_station_list()
 
-    # List of stations & distance:
+    # List of stations & distance
     stations_distance_list = stations_by_distance(stations, (52.2053, 0.1218))
-
-    # TO DO: Sort list
 
     # Filter top & bottom 10
     closest = stations_distance_list[:10]

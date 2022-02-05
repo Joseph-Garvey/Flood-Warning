@@ -5,17 +5,17 @@
 geographical data.
 """
 
+#region Imports
 from .utils import sorted_by_key  # noqa
 from haversine import haversine
+#endregion
 
+#region Functions
+def distance(coord, p):
+    """Computes geographical distance between two points, used to increase readability over calling haversine directly."""
+    return haversine(coord, p)  
 
-def distance(coord, p): # increase readability
-    
-    return haversine(coord, p)
-    
 ### Task 1C
-# return list of all stations within rad r of a geo coord x
-# remember distance between two geo points is computed by haversine
 def stations_within_radius(stations, centre, r):
     """Returns a list of stations within radius r of a given co-ordinate.
 
@@ -57,3 +57,14 @@ def stations_by_distance(stations, p):
     sorted_by_key(stations_and_distance, 1)
 
     return stations_and_distance
+
+### Task 1D
+# list of stations in
+# return container with names of rivers with a monitoring station
+# should not return duplicates, use set
+def rivers_with_station(stations):
+    rivers = {} # set
+    for station in stations: # iterate and add rivers to set
+        rivers += station.river
+    return rivers
+#endregion

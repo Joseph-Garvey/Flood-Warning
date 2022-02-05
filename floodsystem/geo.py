@@ -76,6 +76,12 @@ def rivers_with_station(stations):
 ### Task 1D ii)
 # map river names key to a list of station objects on a river
 def stations_by_river(stations):
+    """ Returns a dictionary containing rivers along with the names of their monitoring stations.
+    Params:
+        Stations - List of all stations. \n.
+    Returns:
+        {River 1 : [Station 1, Station 2], River 2 : [Station 3, Station 4], ... }
+    """
 # iterate through
 # if key exists append to list
 # else create key

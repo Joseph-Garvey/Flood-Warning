@@ -10,8 +10,6 @@ from .utils import sorted_by_key  # noqa
 from haversine import haversine, Unit
 
 # Task 1B
-
-
 def stations_by_distance(stations, p):
 
     # Create empty list
@@ -19,10 +17,10 @@ def stations_by_distance(stations, p):
 
     for station in stations:
         # Find distance of each station from coordinate p
-        distance = haversine(stations.coord, p)
+        distance = haversine(station.coord, p)
 
         # Create tuple with station & distance
-        distance_tuple = (stations, distance)
+        distance_tuple = (station, distance)
 
         # Add tuple to list
         stations_and_distance.append(distance_tuple)
@@ -33,8 +31,6 @@ def stations_by_distance(stations, p):
     return stations_and_distance
 
 # Task 1E
-
-
 def rivers_by_station_number(stations, N):
     """Returns a list of the first N (river name, number of stations) tuples with the greatest number of stations.
 

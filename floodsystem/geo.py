@@ -11,7 +11,14 @@ from haversine import haversine, Unit
 
 
 def stations_by_distance(stations, p):
+    """Returns a list of tuples containing stations and their distances from coordinate P.
 
+    Params:
+        Stations - List of all stations. \n
+        P - The radius by which the function filters in km.
+    Returns:
+        [(Station 1, Distance 1) ... (Station N, Distance N)]
+    """
     # Create empty list
     stations_and_distance = []
 

@@ -10,12 +10,16 @@ from .utils import sorted_by_key  # noqa
 from haversine import haversine
 # endregion
 
-#region Functions
+# region Functions
+
+
 def distance(coord, p):
     """Computes geographical distance between two points, used to increase readability over calling haversine directly."""
     return haversine(coord, p)
 
-#region Task 1C
+# region Task 1C
+
+
 def stations_within_radius(stations, centre, r):
     """Returns a list of stations within radius r of a given co-ordinate.
 
@@ -29,9 +33,11 @@ def stations_within_radius(stations, centre, r):
         if(haversine(stations[i].coord, centre) < r):  # it would never be exactly equal to anyways.
             result.append(stations[i])
     return result
-#endregion
+# endregion
 
-#region Task 1B
+# region Task 1B
+
+
 def stations_by_distance(stations, p):
     """Returns a list of tuples containing stations and their distances from coordinate P.
 
@@ -55,12 +61,14 @@ def stations_by_distance(stations, p):
         stations_and_distance.append(distance_tuple)
 
     # Sort list by distance
-    sorted_by_key(stations_and_distance, 1)
+    sorted_stations_and_distance = sorted_by_key(stations_and_distance, 1)
 
-    return stations_and_distance
-#endregion
+    return sorted_stations_and_distance
+# endregion
 
-#region Task 1E
+# region Task 1E
+
+
 def rivers_by_station_number(stations, N):
     """Returns a list of the first N (river name, number of stations) tuples with the greatest number of stations.
 
@@ -104,6 +112,8 @@ def rivers_by_station_number(stations, N):
 
 # region Task 1D
 # Task 1D i)
+
+
 def rivers_with_station(stations):
     """Returns a set containing all rivers which have a monitoring station.
 
@@ -119,6 +129,8 @@ def rivers_with_station(stations):
 
 # Task 1D ii)
 # map river names key to a list of station objects on a river
+
+
 def stations_by_river(stations):
     """ Returns a dictionary containing rivers along with the names of their monitoring stations.
     Params:
@@ -149,6 +161,6 @@ def stations_by_river(stations):
         # else:
         #    output.update({station.river : [station.name]})
     return output
-#endregion
+# endregion
 
 # endregion

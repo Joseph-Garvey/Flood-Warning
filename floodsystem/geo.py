@@ -20,6 +20,7 @@ def distance(coord, p):
 # Task 1C
 
 
+# Task 1C
 def stations_within_radius(stations, centre, r):
     """Returns a list of stations within radius r of a given co-ordinate.
 
@@ -79,11 +80,8 @@ def rivers_by_station_number(stations, N):
     # Create empty list
     rivers_n_list = []
 
-    # Create dictionary containing stations_by_river
-    stations_dict = stations_by_river(stations)
-
     # Loop over each station
-    for i in stations_dict:
+    for i in stations_by_river:
 
         # Create tuple of (river name, number of stations)
         river_n_tuple = (i, len(stations_by_river[i]))
@@ -126,17 +124,6 @@ def rivers_with_station(stations):
     for station in stations:  # iterate and add rivers to set
         rivers.add(station.river)
     return rivers
-
-# Task 1D ii)
-# map river names key to a list of station objects on a river
-
-
-def stations_by_river(stations):
-    # iterate through
-    # if key exists append to list
-    # else create key
-    # or get rivers then append all?
-    output = {}
 
     # for river in rivers_with_station(stations):
     #    output = {river : []}

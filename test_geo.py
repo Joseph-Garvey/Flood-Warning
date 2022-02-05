@@ -24,7 +24,7 @@ test_stations = [station_1, station_2, station_3, station_4, station_5, station_
 def test_distance():
     coord1 = [15.0185, 30.2026]
     coord2 = [23.5076, 1.101]
-    assert round(distance(coord1, coord2), 6) == 3190.13
+    assert round(distance(coord1, coord2), 2) == 3190.13
 
 
 # def test_stations_by_distance():
@@ -39,11 +39,11 @@ def test_distance():
 
 
 def test_rivers_by_station_number():
-    list = rivers_by_station_number(test_stations, 3)
+    test_list = rivers_by_station_number(test_stations, 3)
     # should produce 5 stations
-    assert list[0][0].name == "Big River"  # river with most stations at top of list
-    assert len(list) == 4  # assert that same no as nth entry also returned
-    assert type(list) == list  # assert that it is a list
+    assert test_list[0][0] == "Big River"  # river with most stations at top of list
+    assert len(test_list) == 4  # assert that same no as nth entry also returned
+    assert type(test_list) == list  # assert that it is a list
     # assert list is ordered
-    for i in range(len(list) - 1):
-        assert len(list[i][1]) >= len(list[i + 1][1])
+    for i in range(len(test_list) - 1):
+        assert test_list[i][1] >= test_list[i + 1][1]

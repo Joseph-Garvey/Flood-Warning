@@ -10,7 +10,7 @@ from .utils import sorted_by_key  # noqa
 from haversine import haversine
 # endregion
 
-# region Functions
+#region Functions
 def distance(coord, p):
     """Computes geographical distance between two points, used to increase readability over calling haversine directly."""
     return haversine(coord, p)
@@ -149,6 +149,6 @@ def stations_by_river(stations):
         # else:
         #    output.update({station.river : [station.name]})
     return output
-# endregion
+#endregion
 
 # endregion

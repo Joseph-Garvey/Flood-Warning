@@ -58,10 +58,8 @@ def stations_by_distance(stations, p):
 
     return stations_and_distance
 
+#region Task 1D
 ### Task 1D i)
-# list of stations in
-# return container with names of rivers with a monitoring station
-# should not return duplicates, use set
 def rivers_with_station(stations):
     """Returns a set containing all rivers which have a monitoring station.
 
@@ -76,5 +74,28 @@ def rivers_with_station(stations):
     return rivers
 
 ### Task 1D ii)
-#def stations_by_river
+# map river names key to a list of station objects on a river
+def stations_by_river(stations):
+# iterate through
+# if key exists append to list
+# else create key
+# or get rivers then append all?
+    output = {}
+
+    #for river in rivers_with_station(stations):
+    #    output = {river : []}
+    #for station in stations:
+    #    tmp = output.get(station.river)
+    #    tmp.append(station.name)
+    #    output.update({station.river, tmp})
+    for station in stations: # O(N) instead of O(N^2)
+        if((tmp := output.get(station.river)) != None): x = tmp
+        else: x = []
+        output.update({station.river : [station.name] + x})
+        #if(station.river in output.keys()):
+        #    output.update({station.river : output.get(station.river) + [station.name]})
+        #else:
+        #    output.update({station.river : [station.name]})
+    return output
+#endregion    
 #endregion

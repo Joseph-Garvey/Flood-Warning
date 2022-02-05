@@ -5,17 +5,17 @@
 geographical data.
 """
 
-from .utils import sorted_by_key
+#region Imports
+from .utils import sorted_by_key  # noqa
 from haversine import haversine
+#endregion
 
+#region Functions
+def distance(coord, p):
+    """Computes geographical distance between two points, used to increase readability over calling haversine directly."""
+    return haversine(coord, p)  
 
-def distance(coord, p): # increase readability
-    
-    return haversine(coord, p)
-    
 ### Task 1C
-# return list of all stations within rad r of a geo coord x
-# remember distance between two geo points is computed by haversine
 def stations_within_radius(stations, centre, r):
     """Returns a list of stations within radius r of a given co-ordinate.
 
@@ -57,3 +57,52 @@ def stations_by_distance(stations, p):
     sorted_by_key(stations_and_distance, 1)
 
     return stations_and_distance
+
+#region Task 1D
+### Task 1D i)
+def rivers_with_station(stations):
+    """Returns a set containing all rivers which have a monitoring station.
+
+    Params:
+        Stations - List of all stations. \n.
+    Returns:
+        {River 1, River 2, ... }
+    """
+    rivers = set() # set
+    for station in stations: # iterate and add rivers to set
+        rivers.add(station.river)
+    return rivers
+
+### Task 1D ii)
+# map river names key to a list of station objects on a river
+def stations_by_river(stations):
+    """ Returns a dictionary containing rivers along with the names of their monitoring stations.
+    Params:
+        Stations - List of all stations. \n.
+    Returns:
+        {River 1 : [Station 1, Station 2], River 2 : [Station 3, Station 4], ... }
+    """
+# iterate through
+# if key exists append to list
+# else create key
+# or get rivers then append all?
+    output = {}
+
+    #for river in rivers_with_station(stations):
+    #    output = {river : []}
+    #for station in stations:
+    #    tmp = output.get(station.river)
+    #    tmp.append(station.name)
+    #    output.update({station.river, tmp})
+    for station in stations: # O(N) instead of O(N^2)
+        if((tmp := output.get(station.river)) != None): x = tmp
+        else: x = []
+        output.update({station.river : [station.name] + x})
+        #if(station.river in output.keys()):
+        #    output.update({station.river : output.get(station.river) + [station.name]})
+        #else:
+        #    output.update({station.river : [station.name]})
+    return output
+#endregion    
+        
+#endregion

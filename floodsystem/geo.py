@@ -3,15 +3,43 @@
 # SPDX-License-Identifier: MIT
 """This module contains a collection of functions related to
 geographical data.
-
 """
 
+#region Imports
 from .utils import sorted_by_key  # noqa
-from haversine import haversine, Unit
+from haversine import haversine
+#endregion
 
-# Task 1B
+#region Functions
+def distance(coord, p):
+    """Computes geographical distance between two points, used to increase readability over calling haversine directly."""
+    return haversine(coord, p)  
+
+### Task 1C
+def stations_within_radius(stations, centre, r):
+    """Returns a list of stations within radius r of a given co-ordinate.
+
+    Params:
+        Stations - List of Stations to be Filtered. \n
+        Centre - The coordinate around which the radius is measured. The 'search parameter'. \n
+        R - The radius by which the function filters in km.
+    """
+    result = []
+    for i in range(len(stations)):  
+        if(haversine(stations[i].coord, centre) < r): # it would never be exactly equal to anyways.
+            result.append(stations[i])
+    return result
+
+### Task 1B
 def stations_by_distance(stations, p):
+    """Returns a list of tuples containing stations and their distances from coordinate P.
 
+    Params:
+        Stations - List of all stations. \n
+        P - The radius by which the function filters in km.
+    Returns:
+        [(Station 1, Distance 1) ... (Station N, Distance N)]
+    """
     # Create empty list
     stations_and_distance = []
 
@@ -68,3 +96,46 @@ def rivers_by_station_number(stations, N):
             first_N_rivers.append(sorted_list[i])
 
     return first_N_rivers
+### Task 1D i)
+# list of stations in
+# return container with names of rivers with a monitoring station
+# should not return duplicates, use set
+def rivers_with_station(stations):
+    """Returns a set containing all rivers which have a monitoring station.
+
+    Params:
+        Stations - List of all stations. \n.
+    Returns:
+        {River 1, River 2, ... }
+    """
+    rivers = set() # set
+    for station in stations: # iterate and add rivers to set
+        rivers.add(station.river)
+    return rivers
+
+### Task 1D ii)
+# map river names key to a list of station objects on a river
+def stations_by_river(stations):
+# iterate through
+# if key exists append to list
+# else create key
+# or get rivers then append all?
+    output = {}
+
+    #for river in rivers_with_station(stations):
+    #    output = {river : []}
+    #for station in stations:
+    #    tmp = output.get(station.river)
+    #    tmp.append(station.name)
+    #    output.update({station.river, tmp})
+    for station in stations: # O(N) instead of O(N^2)
+        if((tmp := output.get(station.river)) != None): x = tmp
+        else: x = []
+        output.update({station.river : [station.name] + x})
+        #if(station.river in output.keys()):
+        #    output.update({station.river : output.get(station.river) + [station.name]})
+        #else:
+        #    output.update({station.river : [station.name]})
+    return output
+        
+#endregion

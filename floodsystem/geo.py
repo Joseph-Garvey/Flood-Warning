@@ -66,6 +66,8 @@ def stations_by_distance(stations, p):
     return stations_and_distance
 
 # Task 1E
+
+
 def rivers_by_station_number(stations, N):
     """Returns a list of the first N (river name, number of stations) tuples with the greatest number of stations.
 
@@ -78,11 +80,14 @@ def rivers_by_station_number(stations, N):
     # Create empty list
     rivers_n_list = []
 
+    # Create dictionary from 1D stations_by_river
+    stations_dict = stations_by_river(stations)
+
     # Loop over each station
-    for i in stations_by_river:
+    for i in stations_dict:
 
         # Create tuple of (river name, number of stations)
-        river_n_tuple = (i, len(stations_by_river[i]))
+        river_n_tuple = (i, len(stations_dict[i]))
 
         # Add tuple to list
         rivers_n_list.append(river_n_tuple)
@@ -104,8 +109,10 @@ def rivers_by_station_number(stations, N):
 
     return first_N_rivers
 
-#region Task 1D
-### Task 1D i)
+# region Task 1D
+# Task 1D i)
+
+
 def rivers_with_station(stations):
     """Returns a set containing all rivers which have a monitoring station.
 
@@ -114,13 +121,15 @@ def rivers_with_station(stations):
     Returns:
         {River 1, River 2, ... }
     """
-    rivers = set() # set
-    for station in stations: # iterate and add rivers to set
+    rivers = set()  # set
+    for station in stations:  # iterate and add rivers to set
         rivers.add(station.river)
     return rivers
 
-### Task 1D ii)
+# Task 1D ii)
 # map river names key to a list of station objects on a river
+
+
 def stations_by_river(stations):
     """ Returns a dictionary containing rivers along with the names of their monitoring stations.
     Params:
@@ -134,21 +143,23 @@ def stations_by_river(stations):
 # or get rivers then append all?
     output = {}
 
-    #for river in rivers_with_station(stations):
+    # for river in rivers_with_station(stations):
     #    output = {river : []}
-    #for station in stations:
+    # for station in stations:
     #    tmp = output.get(station.river)
     #    tmp.append(station.name)
     #    output.update({station.river, tmp})
-    for station in stations: # O(N) instead of O(N^2)
-        if((tmp := output.get(station.river)) != None): x = tmp
-        else: x = []
-        output.update({station.river : [station.name] + x})
-        #if(station.river in output.keys()):
+    for station in stations:  # O(N) instead of O(N^2)
+        if((tmp := output.get(station.river)) != None):
+            x = tmp
+        else:
+            x = []
+        output.update({station.river: [station.name] + x})
+        # if(station.river in output.keys()):
         #    output.update({station.river : output.get(station.river) + [station.name]})
-        #else:
+        # else:
         #    output.update({station.river : [station.name]})
     return output
-#endregion      
-        
-#endregion
+# endregion
+
+# endregion

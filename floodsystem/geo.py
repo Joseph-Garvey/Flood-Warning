@@ -66,8 +66,6 @@ def stations_by_distance(stations, p):
     return stations_and_distance
 
 # Task 1E
-
-
 def rivers_by_station_number(stations, N):
     """Returns a list of the first N (river name, number of stations) tuples with the greatest number of stations.
 
@@ -106,12 +104,7 @@ def rivers_by_station_number(stations, N):
 
     return first_N_rivers
 
-# Task 1D i)
-# list of stations in
-# return container with names of rivers with a monitoring station
-# should not return duplicates, use set
-
-
+### Task 1D
 def rivers_with_station(stations):
     """Returns a set containing all rivers which have a monitoring station.
 
@@ -142,5 +135,6 @@ def rivers_with_station(stations):
         # else:
         #    output.update({station.river : [station.name]})
     return output
-
-# endregion
+#endregion    
+        
+#endregion

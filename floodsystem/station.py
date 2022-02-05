@@ -6,10 +6,6 @@ for manipulating/modifying station data
 
 """
 
-
-from sqlalchemy import true
-
-
 class MonitoringStation:
     """This class represents a river level monitoring station"""
 

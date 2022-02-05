@@ -9,9 +9,9 @@ def run():
     # Build list of stations
     stations = build_station_list()
     # print how many rivers have at least one monitoring station
-    print(len(rivers_with_station))
+    print(len(rivers_with_station(stations)))
     # print first 10 in alphabetical order
-    print(stations_by_river)
+    print(stations_by_river(stations))
 
 if __name__ == "__main__":
     print("*** Task 1A: CUED Part IA Flood Warning System ***")

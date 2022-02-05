@@ -58,13 +58,23 @@ def stations_by_distance(stations, p):
 
     return stations_and_distance
 
-### Task 1D
+### Task 1D i)
 # list of stations in
 # return container with names of rivers with a monitoring station
 # should not return duplicates, use set
 def rivers_with_station(stations):
+    """Returns a set containing all rivers which have a monitoring station.
+
+    Params:
+        Stations - List of all stations. \n.
+    Returns:
+        {River 1, River 2, ... }
+    """
     rivers = set() # set
     for station in stations: # iterate and add rivers to set
         rivers.add(station.river)
     return rivers
+
+### Task 1D ii)
+#def stations_by_river
 #endregion

@@ -104,7 +104,8 @@ def rivers_by_station_number(stations, N):
 
     return first_N_rivers
 
-### Task 1D
+#region Task 1D
+### Task 1D i)
 def rivers_with_station(stations):
     """Returns a set containing all rivers which have a monitoring station.
 
@@ -113,28 +114,35 @@ def rivers_with_station(stations):
     Returns:
         {River 1, River 2, ... }
     """
-    rivers = set()  # set
-    for station in stations:  # iterate and add rivers to set
+    rivers = set() # set
+    for station in stations: # iterate and add rivers to set
         rivers.add(station.river)
     return rivers
 
-    # for river in rivers_with_station(stations):
+### Task 1D ii)
+# map river names key to a list of station objects on a river
+def stations_by_river(stations):
+# iterate through
+# if key exists append to list
+# else create key
+# or get rivers then append all?
+    output = {}
+
+    #for river in rivers_with_station(stations):
     #    output = {river : []}
-    # for station in stations:
+    #for station in stations:
     #    tmp = output.get(station.river)
     #    tmp.append(station.name)
     #    output.update({station.river, tmp})
-    for station in stations:  # O(N) instead of O(N^2)
-        if((tmp := output.get(station.river)) != None):
-            x = tmp
-        else:
-            x = []
-        output.update({station.river: [station.name] + x})
-        # if(station.river in output.keys()):
+    for station in stations: # O(N) instead of O(N^2)
+        if((tmp := output.get(station.river)) != None): x = tmp
+        else: x = []
+        output.update({station.river : [station.name] + x})
+        #if(station.river in output.keys()):
         #    output.update({station.river : output.get(station.river) + [station.name]})
-        # else:
+        #else:
         #    output.update({station.river : [station.name]})
     return output
-#endregion    
+#endregion      
         
 #endregion

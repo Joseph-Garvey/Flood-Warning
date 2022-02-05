@@ -60,9 +60,6 @@ class MonitoringStation:
             True if the data is consistent \n
             False if the data is unavailable or inconsistent"""
 
-        # Set initial consistency value as True
-        consistency = True
-
         # Check if no typical range data is available
         if self.typical_range == None:
             consistency = False

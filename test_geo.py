@@ -67,6 +67,48 @@ def test_stations_within_radius():
     assert station_5 in test_list
     assert station_6 in test_list
     assert station_7 not in test_list
+
+# Task 1D Tests - joe
+def test_rivers_with_station():
+    """Tests the function used by Task 1D i
+    Test List should return a (container) of rivers without duplicates.
+    """
+    #   nb it is not explicitly stated what container type should be used,
+    #   however as this program uses sets, this is still tested for.
+
+    # in the test data there are 4 rivers
+    test_set = rivers_with_station(test_stations)
+    assert len(test_set) == 4
+    assert type(test_set) == set ## there will be zero duplicate values by virtue of the type being a set,
+    # therefore, it is not necessary to test for duplicate values.
+
+def test_stations_by_river():
+    """Tests the function used by Task 1D ii"""
+    # gather test data from function
+    test_dict = stations_by_river(test_stations)
+    # assert return correct type
+    assert type(test_dict) == dict
+    # testing for duplicates unnecessary as dict only allows unique keys.
+    # assert correct number of rivers.
+    assert len(test_dict) == 4
+    # asset each river exists as a key
+    assert "Big River" in test_dict
+    assert "Medium River" in test_dict
+    assert "Small River 1" in test_dict
+    assert "Small River 2" in test_dict
+    # assert each river has the correct number of stations
+    # assert big rivers have 3 stations, medium 2, small 1.
+    assert len(test_dict["Big River"]) == 3
+    assert len(test_dict["Medium River"]) == 2
+    assert len(test_dict["Small River 1"]) == len(["Small River 2"]) == 1
+    # assert correct stations at each river
+    assert station_1 in test_dict["Small River 1"]
+    assert station_2 in test_dict["Small River 2"]
+    assert station_3 in test_dict["Medium River"]
+    assert station_4 in test_dict["Medium River"]
+    assert station_5 in test_dict["Big River"]
+    assert station_6 in test_dict["Big River"]
+    assert station_7 in test_dict["Big River"]
     
 # Task 1E Tests - joe
 def test_rivers_by_station_number():

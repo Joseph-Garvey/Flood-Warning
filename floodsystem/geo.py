@@ -155,7 +155,7 @@ def stations_by_river(stations):
             x = tmp
         else:
             x = []
-        output.update({station.river: [station.name] + x})
+        output.update({station.river: [station] + x})
         # if(station.river in output.keys()):
         #    output.update({station.river : output.get(station.river) + [station.name]})
         # else:

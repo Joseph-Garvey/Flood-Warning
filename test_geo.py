@@ -14,7 +14,7 @@ from floodsystem.geo import *
 station_1 = MonitoringStation('ID 1', 'Measurement ID 1', 'Name 1', (10.0, 10.0), (1.0, 2.0), 'Small River 1', 'Town 1')
 station_2 = MonitoringStation('ID 2', 'Measurement ID 2', 'Name 2', (10.0, 20.0), (1.0, 2.0), 'Small River 2', 'Town 2')
 station_3 = MonitoringStation('ID 3', 'Measurement ID 3', 'Name 3', (10.0, 30.0), (1.0, 2.0), 'Medium River', 'Town 3')
-station_4 = MonitoringStation('ID 4', 'Measurement ID 4', 'Name 4', (10.0, 40.0), (), 'Medium River', 'Town 4')
+station_4 = MonitoringStation('ID 4', 'Measurement ID 4', 'Name 4', (10.0, 40.0), None, 'Medium River', 'Town 4')
 station_5 = MonitoringStation('ID 5', 'Measurement ID 5', 'Name 5', (0.0, 10.0), (1.0, 2.0), 'Big River', 'Town 5')
 station_6 = MonitoringStation('ID 6', 'Measurement ID 6', 'Name 6', (0.0, 20.0), (2.0, 1.0), 'Big River', 'Town 6')
 station_7 = MonitoringStation('ID 7', 'Measurement ID 7', 'Name 7', (0.0, 30.0), (2.0, 1.0), 'Big River', 'Town 7')
@@ -75,12 +75,10 @@ def test_rivers_with_station():
     """
     #   nb it is not explicitly stated what container type should be used,
     #   however as this program uses sets, this is still tested for.
-
-    # in the test data there are 4 rivers
     test_set = rivers_with_station(test_stations)
-    assert len(test_set) == 4
     assert type(test_set) == set ## there will be zero duplicate values by virtue of the type being a set,
     # therefore, it is not necessary to test for duplicate values.
+    shared_d_tests(test_set)
 
 def test_stations_by_river():
     """Tests the function used by Task 1D ii"""
@@ -89,13 +87,8 @@ def test_stations_by_river():
     # assert return correct type
     assert type(test_dict) == dict
     # testing for duplicates unnecessary as dict only allows unique keys.
-    # assert correct number of rivers.
-    assert len(test_dict) == 4
     # asset each river exists as a key
-    assert "Big River" in test_dict
-    assert "Medium River" in test_dict
-    assert "Small River 1" in test_dict
-    assert "Small River 2" in test_dict
+    shared_d_tests(test_dict)
     # assert each river has the correct number of stations
     # assert big rivers have 3 stations, medium 2, small 1.
     assert len(test_dict["Big River"]) == 3
@@ -110,6 +103,16 @@ def test_stations_by_river():
     assert station_6 in test_dict["Big River"]
     assert station_7 in test_dict["Big River"]
     
+def shared_d_tests(container):
+    """Shortens d testing code by putting shared tests in one function."""
+    # in the test data there are 4 rivers
+    assert len(container) == 4
+    # assert rivers are contained within container
+    assert "Big River" in container
+    assert "Medium River" in container
+    assert "Small River 1" in container
+    assert "Small River 2" in container
+
 # Task 1E Tests - joe
 def test_rivers_by_station_number():
     test_list = rivers_by_station_number(test_stations, 3)

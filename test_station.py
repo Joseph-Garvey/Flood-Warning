@@ -28,24 +28,25 @@ def test_create_monitoring_station():
     assert s.town == town
 
 
-#region Task 1F Testing
+# region Task 1F Testing
 
-# Testing Task 1F part i
+# Testing Task 1F part i - irfan
 def test_typical_range_consistent():
     # Create 3 dummy stations, 1 with consistent data, 1 with empty data, 1 with inconsistent low/high data
     station_A = MonitoringStation('ID A', 'Measurement ID A', 'Name A', (10.0, 40.0), None, 'Medium River', 'Town A')
     station_B = MonitoringStation('ID B', 'Measurement ID B', 'Name B', (0.0, 10.0), (1.0, 2.0), 'Big River', 'Town B')
     station_C = MonitoringStation('ID C', 'Measurement ID C', 'Name C', (0.0, 20.0), (2.0, 1.0), 'Big River', 'Town C')
 
+    # Assert A & C are False, B is True
     assert station_A.typical_range_consistent() == False
     assert station_B.typical_range_consistent() == True
     assert station_C.typical_range_consistent() == False
 
-# Testing Task 1F part ii
+# Testing Task 1F part ii - irfan
 
 
 def test_inconsistent_typical_range_stations():
-    # Create 3 dummy stations, 1 with consistent data, 1 with empty data, 1 with inconsistent low/high data
+    # Create list of 3 dummy stations, 1 with consistent data, 1 with empty data, 1 with inconsistent low/high data
     station_A = MonitoringStation('ID A', 'Measurement ID A', 'Name A', (10.0, 40.0), None, 'Medium River', 'Town A')
     station_B = MonitoringStation('ID B', 'Measurement ID B', 'Name B', (0.0, 10.0), (1.0, 2.0), 'Big River', 'Town B')
     station_C = MonitoringStation('ID C', 'Measurement ID C', 'Name C', (0.0, 20.0), (2.0, 1.0), 'Big River', 'Town C')
@@ -65,4 +66,4 @@ def test_inconsistent_typical_range_stations():
     assert inconsistent_typical_range_stations(station_list)[0].typical_range_consistent() == False
     assert inconsistent_typical_range_stations(station_list)[1].typical_range_consistent() == False
 
-#endregion
+# endregion

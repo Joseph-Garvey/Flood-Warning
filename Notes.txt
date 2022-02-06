@@ -1,6 +1,6 @@
 TODO:
-Tests 1A, C, D
-functions 
-then the deliverables
+do we need to test 1a?
+do we need to test the task output / deliverables programmatically?
+
 CLEANUP CODE
 add docstrings everywhere

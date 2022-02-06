@@ -28,7 +28,7 @@ def test_create_monitoring_station():
     assert s.town == town
 
 
-# region Task 1F Testing
+#region Task 1F Testing
 
 # Testing Task 1F part i
 def test_typical_range_consistent():
@@ -65,4 +65,4 @@ def test_inconsistent_typical_range_stations():
     assert inconsistent_typical_range_stations(station_list)[0].typical_range_consistent() == False
     assert inconsistent_typical_range_stations(station_list)[1].typical_range_consistent() == False
 
-# endregion
+#endregion

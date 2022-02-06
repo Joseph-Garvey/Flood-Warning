@@ -1,6 +1,7 @@
 from floodsystem.station import MonitoringStation
 from floodsystem.geo import *
 
+#region Test Variables
 # Create 7 dummy stations
 # Requires:
 # Different distances
@@ -19,16 +20,15 @@ station_6 = MonitoringStation('ID 6', 'Measurement ID 6', 'Name 6', (0.0, 20.0),
 station_7 = MonitoringStation('ID 7', 'Measurement ID 7', 'Name 7', (0.0, 30.0), (2.0, 1.0), 'Big River', 'Town 7')
 
 test_stations = [station_1, station_2, station_3, station_4, station_5, station_6, station_7]
+#endregion
 
-
+#region Tests
 def test_distance():
     coord1 = [15.0185, 30.2026]
     coord2 = [23.5076, 1.101]
     assert round(distance(coord1, coord2), 2) == 3190.13
 
-# testing Task 1B
-
-
+# Task 1B Tests - irfan
 def test_stations_by_distance():
 
     # Requirement: returns a list of (station, distance) tuples
@@ -49,10 +49,26 @@ def test_stations_by_distance():
     for i in range(len(test_distance_list) - 1):
         assert test_distance_list[i][1] <= test_distance_list[i + 1][1]
 
-
-# testing task 1e
-
-
+# Task 1C Tests - joe
+def test_stations_within_radius():
+    """Tests the functions used within Task 1C.
+    Test List will return a list of stations within the test area.
+    Expected Values: [Station 1, Station 2, Station 5, Station 6]
+    """
+    # obtain test list from function being tested
+    # expected result known and checked
+    test_list = stations_within_radius(test_stations, (0.0,0.0), (2500.0))
+    assert len(test_list) == 4
+    assert type(test_list) == list
+    assert station_1 in test_list
+    assert station_2 in test_list
+    assert station_3 not in test_list
+    assert station_4 not in test_list
+    assert station_5 in test_list
+    assert station_6 in test_list
+    assert station_7 not in test_list
+    
+# Task 1E Tests - joe
 def test_rivers_by_station_number():
     test_list = rivers_by_station_number(test_stations, 3)
     # should produce 5 stations
@@ -62,3 +78,4 @@ def test_rivers_by_station_number():
     # assert list is ordered
     for i in range(len(test_list) - 1):
         assert test_list[i][1] >= test_list[i + 1][1]
+#endregion

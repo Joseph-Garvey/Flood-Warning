@@ -1,1 +1,6 @@
-Remember to add tests for Task 1C
+TODO:
+Tests 1A, C, D
+functions 
+then the deliverables
+CLEANUP CODE
+add docstrings everywhere

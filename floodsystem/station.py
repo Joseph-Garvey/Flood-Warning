@@ -9,6 +9,7 @@ for manipulating/modifying station data
 
 class MonitoringStation:
     """This class represents a river level monitoring station"""
+    # region Task 1A
 
     def __init__(self, station_id, measure_id, label, coord, typical_range,
                  river, town):
@@ -50,9 +51,9 @@ class MonitoringStation:
 
     def __gt__(self, other):
         return self.name > other.name
+    # endregion
 
-    # Task 1F Part i
-
+    # region Task 1F
     def typical_range_consistent(self):
         """Checks the typical high/low range data for consistency.
 
@@ -75,9 +76,11 @@ class MonitoringStation:
         return consistency
 
 
-# Task 1F Part ii
 def inconsistent_typical_range_stations(stations):
-    """Returns a list of stations that have inconsistent data"""
+    """Returns a list of stations that have inconsistent data
+
+    Parameters:
+        Stations - list of MonitoringStations objects"""
 
     # create an empty list
     incons_stations = []
@@ -92,3 +95,4 @@ def inconsistent_typical_range_stations(stations):
             incons_stations.append(station)
 
     return incons_stations
+# endregion

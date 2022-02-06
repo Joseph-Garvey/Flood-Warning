@@ -1,7 +1,7 @@
 from floodsystem.station import MonitoringStation
 from floodsystem.geo import *
 
-#region Test Variables
+# region Test Variables
 # Create 7 dummy stations
 # Requires:
 # Different distances
@@ -20,15 +20,19 @@ station_6 = MonitoringStation('ID 6', 'Measurement ID 6', 'Name 6', (0.0, 20.0),
 station_7 = MonitoringStation('ID 7', 'Measurement ID 7', 'Name 7', (0.0, 30.0), (2.0, 1.0), 'Big River', 'Town 7')
 
 test_stations = [station_1, station_2, station_3, station_4, station_5, station_6, station_7]
-#endregion
+# endregion
 
-#region Tests
+# region Tests
+
+
 def test_distance():
     coord1 = [15.0185, 30.2026]
     coord2 = [23.5076, 1.101]
     assert round(distance(coord1, coord2), 2) == 3190.13
 
 # Task 1B Tests - irfan
+
+
 def test_stations_by_distance():
 
     # Requirement: returns a list of (station, distance) tuples
@@ -50,6 +54,8 @@ def test_stations_by_distance():
         assert test_distance_list[i][1] <= test_distance_list[i + 1][1]
 
 # Task 1C Tests - joe
+
+
 def test_stations_within_radius():
     """Tests the functions used within Task 1C.
     Test List will return a list of stations within the test area.
@@ -57,7 +63,7 @@ def test_stations_within_radius():
     """
     # obtain test list from function being tested
     # expected result known and checked
-    test_list = stations_within_radius(test_stations, (0.0,0.0), (2500.0))
+    test_list = stations_within_radius(test_stations, (0.0, 0.0), (2500.0))
     assert len(test_list) == 4
     assert type(test_list) == list
     assert station_1 in test_list
@@ -69,6 +75,8 @@ def test_stations_within_radius():
     assert station_7 not in test_list
 
 # Task 1D Tests - joe
+
+
 def test_rivers_with_station():
     """Tests the function used by Task 1D i
     Test List should return a (container) of rivers without duplicates.
@@ -76,9 +84,10 @@ def test_rivers_with_station():
     #   nb it is not explicitly stated what container type should be used,
     #   however as this program uses sets, this is still tested for.
     test_set = rivers_with_station(test_stations)
-    assert type(test_set) == set ## there will be zero duplicate values by virtue of the type being a set,
+    assert type(test_set) == set  # there will be zero duplicate values by virtue of the type being a set,
     # therefore, it is not necessary to test for duplicate values.
     shared_d_tests(test_set)
+
 
 def test_stations_by_river():
     """Tests the function used by Task 1D ii"""
@@ -102,7 +111,8 @@ def test_stations_by_river():
     assert station_5 in test_dict["Big River"]
     assert station_6 in test_dict["Big River"]
     assert station_7 in test_dict["Big River"]
-    
+
+
 def shared_d_tests(container):
     """Shortens d testing code by putting shared tests in one function."""
     # in the test data there are 4 rivers
@@ -114,13 +124,16 @@ def shared_d_tests(container):
     assert "Small River 2" in container
 
 # Task 1E Tests - joe
+
+
 def test_rivers_by_station_number():
     test_list = rivers_by_station_number(test_stations, 3)
     # should produce 5 stations
     assert test_list[0][0] == "Big River"  # river with most stations at top of list
     assert len(test_list) == 4  # assert that same no as nth entry also returned
     assert type(test_list) == list  # assert that it is a list
+    assert type(test_list[0]) == tuple  # assert that list contains tuples
     # assert list is ordered
     for i in range(len(test_list) - 1):
         assert test_list[i][1] >= test_list[i + 1][1]
-#endregion
+# endregion

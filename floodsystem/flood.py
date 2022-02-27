@@ -1,5 +1,6 @@
 # region imports
 from .station import MonitoringStation
+from operator import attrgetter
 # endregion
 
 # region Task 2B
@@ -59,11 +60,15 @@ def stations_highest_rel_level(stations, N):
         # Check if station has all available & consistent data
         if station.relative_water_level() != None:
 
-            # Create tuple of [station object, relative water level]
-            at_risk_tuple =
+            # Add station object to list
+            at_risk_list.append(station)
 
-            # Add tuple to list
+    # Sort list by relative level in descending order
+    at_risk_list.sort(key=attrgetter('relative_water_level'), reverse=True)
 
-    # sort list by relative level in descending order
-    #
+    # Slice list to first N objects
+    first_N_at_risk = at_risk_list[:N]
+
+    return first_N_at_risk
+
 # endregion

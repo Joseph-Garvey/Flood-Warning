@@ -7,8 +7,7 @@ import matplotlib.pyplot as plt
 # labelled axes
 # station name is plot title
 def plot_water_levels(stations, dates, levels):
-   print()
-   for i in range(stations.len):
+    for i in range(stations.len):
         plt.subplot(1, stations.len(), i+1)
         plt.plot(dates, levels[i])    
         # Add labels, rotate and add plot title
@@ -16,6 +15,6 @@ def plot_water_levels(stations, dates, levels):
         plt.xlabel('Date')
         plt.ylabel('Water Level (m)')
         plt.xticks(rotation = 45)
-    print()
+    plt.show()
 
 #endregion

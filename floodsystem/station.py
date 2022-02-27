@@ -77,7 +77,11 @@ class MonitoringStation:
 
     # region Task 2B
     def relative_water_level(self):
-        """ returns the latest water level as a fraction of the typical range, i.e. a ratio of 1.0 corresponds to a level at the typical high and a ratio of 0.0 corresponds to a level at the typical low. """
+        """ returns the latest water level as a fraction of the typical range, i.e. a ratio of 1.0 corresponds to a level at the typical high and a ratio of 0.0 corresponds to a level at the typical low.
+
+        Returns:
+            (latest level - lowest level)/(typical range) if all data is available & consistent \n
+            None if any data is unavailable or inconsistent"""
 
         # Check if water level data is consistent & available
         if self.latest_level == None:

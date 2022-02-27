@@ -66,7 +66,7 @@ class MonitoringStation:
             consistency = False
 
         # Check if the reported typical high range is less than the reported typical low
-        elif self.typical_range[1] < self.typical_range[0]:
+        elif self.typical_range[1] <= self.typical_range[0]:
             consistency = False
 
         # Otherwise data is consistent

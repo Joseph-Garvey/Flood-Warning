@@ -11,7 +11,7 @@ def stations_level_over_threshold(stations, tol):
         # Check if station has relative water level above tol
         if (station.relative_water_level() != None) and (station.relative_water_level() > tol):
             # Create tuple
-            over_threshold_tuple = [station.name, station.relative_water_level()]
+            over_threshold_tuple = [station, station.relative_water_level()]
 
             # Add tuple to list
             over_threshold_list.append(over_threshold_tuple)

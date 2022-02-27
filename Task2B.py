@@ -17,10 +17,11 @@ def run():
     # print(stations[0].relative_water_level())
 
     # Create list of tuples of station objects & relative water levels above 0.8
-    station_level_list = stations_level_over_threshold(stations, 0.8)
+    station_and_level_list = stations_level_over_threshold(stations, 0.8)
 
-    # Create tuple of names & relative water levels to tuple
-    print(station_level_list)
+    # loop through tuple list and print station names and relative levels
+    for station_tuple in station_and_level_list:
+        print(station_tuple[0].name, station_tuple[1])
 
 
 if __name__ == "__main__":

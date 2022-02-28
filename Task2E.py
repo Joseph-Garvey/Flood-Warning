@@ -19,8 +19,12 @@ def run():
     # Create list of top N stations
     selected_stations_list = stations_highest_rel_level(stations, N)
 
+    # Find station
+    for station in selected_stations_list:
+        selected_station = station
+
     # Create list of level data for past 10 days
-    date_list, level_list = fetch_measure_levels(measure_id, dt=datetime.timedelta(days=dt))
+    date_list, level_list = fetch_measure_levels(selected_station.measure_id, dt=datetime.timedelta(days=dt))
 
     # Plot
     plot_water_levels(selected_stations_list, date_list, level_list)

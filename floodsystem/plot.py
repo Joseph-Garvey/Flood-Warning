@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 
 
 def plot_water_levels(stations, dates, levels):
-    # reminder TODO stations.len isnt a thing. is it len(stations)?
     for i in range(len(stations)):
         plt.subplot(1, len(stations), i + 1)
         plt.plot(dates, levels[i])

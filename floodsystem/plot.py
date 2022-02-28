@@ -5,8 +5,6 @@ import matplotlib.pyplot as plt
 # include typical high, low lines
 # labelled axes
 # station name is plot title
-
-
 def plot_water_levels(stations, dates, levels):
     # reminder TODO #3 check no more than 6 plotted
     #TODO #4 potential issue where dates of stations are not the same, i should not assume this.
@@ -24,5 +22,8 @@ def plot_water_levels(stations, dates, levels):
         plt.ylabel('Water Level (m)')
         plt.xticks(rotation=45)
     plt.show()
-
 # endregion
+
+#region Task 2F
+#def plot_water_level_with_fit(stations, dates, levels, p):
+

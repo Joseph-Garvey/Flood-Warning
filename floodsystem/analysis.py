@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib
+import matplotlib.dates as dates
 import matplotlib.pyplot as plt
 
 # implement function
@@ -15,7 +15,5 @@ def polyfit(dates, levels, p):
     dates = dates.date2num(dates)
     p_coeff = np.polyfit(dates - dates[0], levels, p)
     poly = np.poly1d(p_coeff)
-    #interpolated_date = np.linspace
-    plt.plot(dates, poly(dates - dates[0]))
-    #return poly, (dates-dates[0])
+    return poly, dates - dates[0]
 

@@ -15,7 +15,7 @@ def run():
     
     
     #temptest
-    station_name = "Cam"
+    station_name = "Bourton Dickler"
 
     # Find station
     station_cam = None
@@ -23,6 +23,11 @@ def run():
         if station.name == station_name:
             station_cam = station
             break
-    dt = 2
+    dt = 10
     dates, levels = fetch_measure_levels(station_cam.measure_id, dt=datetime.timedelta(days=dt))
+
     poly, d0 = polyfit(dates, levels, 5)
+
+if __name__ == "__main__":
+    print("*** Task 2F: CUED Part IA Flood Warning System ***")
+    run()

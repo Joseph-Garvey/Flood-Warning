@@ -4,8 +4,6 @@ from operator import attrgetter
 # endregion
 
 # region Task 2B
-
-
 def stations_level_over_threshold(stations, tol):
     """returns a list of tuples, where each tuple holds (i) a station (object) at which the latest relative water level is over tol and (ii) the relative water level at the station. The returned list should be sorted by the relative level in descending order
 
@@ -38,8 +36,6 @@ def stations_level_over_threshold(stations, tol):
 # endregion
 
 # region Task 2C
-
-
 def stations_highest_rel_level(stations, N):
     """Returns a list of the N station objects at which relative water level is highest, sorted in descending order by relative level
 
@@ -71,4 +67,5 @@ def stations_highest_rel_level(stations, N):
 
     return first_N_at_risk
 
+    # sort list by relative level in descending order
 # endregion

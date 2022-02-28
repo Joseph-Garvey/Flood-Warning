@@ -17,7 +17,7 @@ def run():
 
     station_objects_risk_list = stations_highest_rel_level(stations, 10)
     for station_object in station_objects_risk_list:
-        print(station_object.name, station_object.relative_water_level())
+        print(station_object.name, station_object.relative_water_level)
 
 
 # endregion

@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import matplotlib.dates as dt
+import numpy as np
 
 # region Task 2E
 # water level data against time for a station
@@ -25,5 +27,17 @@ def plot_water_levels(stations, dates, levels):
 # endregion
 
 #region Task 2F
-#def plot_water_level_with_fit(stations, dates, levels, p):
+# plot water level data and the best fit polynomial
+def plot_water_level_with_fit(station, dates, levels, p):
+    plt.plot(dates, levels)
+    #dates_interpolated = np.linspace(dates[0], dates[-1], len(dates)*10)
+    math_date = dt.date2num(dates)
+    plt.plot(dates, p(math_date - math_date[0]))
+    plt.axhline(station.typical_range[0])
+    plt.axhline(station.typical_range[1])
+    plt.title(station.name + "Water Level Measured v Best-fit Polynomial")
+    plt.xlabel('Date')
+    plt.ylabel('Water Level (m)')
+    plt.xticks(rotation=45)
+    plt.show()
 

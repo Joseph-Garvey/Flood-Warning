@@ -1,7 +1,7 @@
 from floodsystem.stationdata import build_station_list, update_water_levels
 from floodsystem.plot import plot_water_levels
 from floodsystem.flood import stations_highest_rel_level
-from datetime import date, datetime, timedelta
+import datetime
 
 
 def run():
@@ -12,12 +12,11 @@ def run():
 
     # Plot water levels over past 10 days for 5 stations at which current rel. water level is highest.
 
-    # Get today's date
-    today = date.today()
     # Create list of past 5 days
     date_list = []
+
     for i in range(5):
-        date_item = today - datetime.timedelta(days=i)
+        date_item = datetime.date.today() - datetime.timedelta(days=i)
         date_list.append(date_item)
 
     # Create list of top N stations

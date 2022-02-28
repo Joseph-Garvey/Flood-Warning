@@ -78,6 +78,7 @@ class MonitoringStation:
     # endregion
 
     # region Task 2B
+    @property
     def relative_water_level(self):
         """Returns the latest water level as a fraction of the typical range, i.e. a ratio of 1.0 corresponds to a level at the typical high and a ratio of 0.0 corresponds to a level at the typical low.
 
@@ -95,8 +96,6 @@ class MonitoringStation:
 
         return rel_level
     # endregion
-
-#
 
 
 def inconsistent_typical_range_stations(stations):

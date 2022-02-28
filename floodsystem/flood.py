@@ -1,5 +1,6 @@
 # region imports
 from .station import MonitoringStation
+from operator import attrgetter
 # endregion
 
 # region Task 2B
@@ -20,9 +21,9 @@ def stations_level_over_threshold(stations, tol):
     for station in stations:
 
         # Check if station has relative water level above tol
-        if (station.relative_water_level() != None) and (station.relative_water_level() > tol):
+        if (station.relative_water_level != None) and (station.relative_water_level > tol):
             # Create tuple
-            over_threshold_tuple = [station, station.relative_water_level()]
+            over_threshold_tuple = [station, station.relative_water_level]
 
             # Add tuple to list
             over_threshold_list.append(over_threshold_tuple)
@@ -53,12 +54,18 @@ def stations_highest_rel_level(stations, N):
     for station in stations:
 
         # Check if station has all available & consistent data
-        if station.relative_water_level() != None:
+        if station.relative_water_level != None:
 
-            # Create tuple of [station object, relative water level]
-            at_risk_tuple =
+            # Add station object to list
+            at_risk_list.append(station)
 
-            # Add tuple to list
+    # Sort list by relative level in descending order
+    at_risk_list.sort(key=attrgetter('relative_water_level'), reverse=True)
+
+    # Slice list to first N objects
+    first_N_at_risk = at_risk_list[:N]
+
+    return first_N_at_risk
 
     # sort list by relative level in descending order
 # endregion

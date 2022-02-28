@@ -28,16 +28,21 @@ def plot_water_levels(stations, dates, levels):
 
 #region Task 2F
 # plot water level data and the best fit polynomial
-def plot_water_level_with_fit(station, dates, levels, p):
-    plt.plot(dates, levels)
-    #dates_interpolated = np.linspace(dates[0], dates[-1], len(dates)*10)
-    math_date = dt.date2num(dates)
-    plt.plot(dates, p(math_date - math_date[0]))
-    plt.axhline(station.typical_range[0])
-    plt.axhline(station.typical_range[1])
-    plt.title(station.name + "Water Level Measured v Best-fit Polynomial")
-    plt.xlabel('Date')
-    plt.ylabel('Water Level (m)')
-    plt.xticks(rotation=45)
-    plt.show()
+def plot_water_level_with_fit(stations, dates, levels, funcs):
+    for i in range(len(stations)):
+        plt.subplot(1, len(stations), i + 1)
+        plt.plot(dates[i], levels[i])
+        plt.axhline(stations[i].typical_range[0])
+        plt.axhline(stations[i].typical_range[1])
+        plt.xlabel('Date')
+        plt.ylabel('Water Level (m)')
+        plt.xticks(rotation=45)
+        math_date = dt.date2num(dates[i])
+        plt.plot(dates[i], funcs[i](math_date - math_date[0]))
+        plt.title(stations[0].name)
+    plt.suptitle("Measured Level v Best-Fit for Rivers with Highest Relative Level.")
 
+    #dates_interpolated = np.linspace(dates[0], dates[-1], len(dates)*10)
+    #math_date = dt.date2num(dates)
+    #plt.plot(dates, p(math_date - math_date[0]))
+    plt.show()

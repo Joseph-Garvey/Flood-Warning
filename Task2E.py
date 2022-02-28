@@ -26,26 +26,28 @@ def run():
     counter = 0
 
     for station in selected_stations:
-        while counter < N:
-            date_list, level_list = fetch_measure_levels(station.measure_id, dt=datetime.timedelta(days=dt))
-            if(len(date_list) != 0 or len(level_list) != 0):
+        # while counter < N:
+        date_list, level_list = fetch_measure_levels(station.measure_id, dt=datetime.timedelta(days=dt))
+        if(len(date_list) == 0 or len(level_list) == 0):
+            continue
+        # Append current station to final list, and append corresponding data to data lists
+        final_station_list.append(station)
+        dates.append(date_list)
+        levels.append(level_list)
 
-                # Append current station to final list, and append corresponding data to data lists
-                final_station_list.append(station)
-                dates.append(date_list)
-                levels.append(level_list)
+        counter += 1
 
-                counter += 1
+        if counter < N:
+            stations_highest_rel_level(stations, N + 1)[N + 1]
+            # TODO what the hell
 
-            else:
-                stations_highest_rel_level(stations, N + 1)
-
+        counter += 1
         # Create lists of dates & of level data for past N days
 
-            # if consistent, append to new list
-            # if not consistent : pull highest rel level (currentlengthofllist +1)
+        # if consistent, append to new list
+        # if not consistent : pull highest rel level (currentlengthofllist +1)
 
-            # check again but start at position of the inconsistent data +1
+        # check again but start at position of the inconsistent data +1
 
         else:
 

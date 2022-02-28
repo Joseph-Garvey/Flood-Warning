@@ -5,6 +5,8 @@
 
 from floodsystem.station import MonitoringStation
 from floodsystem.station import inconsistent_typical_range_stations
+from floodsystem.stationdata import build_station_list, update_water_levels
+from floodsystem.flood import stations_level_over_threshold
 
 
 def test_create_monitoring_station():
@@ -65,5 +67,34 @@ def test_inconsistent_typical_range_stations():
     # Assert that all are False
     assert inconsistent_typical_range_stations(station_list)[0].typical_range_consistent() == False
     assert inconsistent_typical_range_stations(station_list)[1].typical_range_consistent() == False
+
+# endregion
+
+# region Task 2B Testing - Irfan
+
+
+def test_relative_water_level():
+
+    # Create list of dummy stations, 1 with consistent & available data, 1 with empty data, 1 with inconsistent low/high data
+    station_A = MonitoringStation('ID A', 'Measurement ID A', 'Name A', (10.0, 20.0), None, 'Medium River', 'Town A')
+    station_A.latest_level = 15.0
+
+    station_B = MonitoringStation('ID B', 'Measurement ID B', 'Name B', (0.0, 10.0), (1.0, 2.0), 'Big River', 'Town B')
+    station_B.latest_level = None
+
+    station_C = MonitoringStation('ID C', 'Measurement ID C', 'Name C', (0.0, 20.0), (2.0, 1.0), 'Big River', 'Town C')
+    station_C.latest_level = 10.0
+
+    #station_list = [station_A, station_B, station_C]
+
+    # Assert that output is a float for consistent stations
+    assert type(station_A.relative_water_level) == float
+    # Assert that output value is as expected
+    #assert station_A.relative_water_level == 0.5
+    # Assert that output is None for stations with inconsistent data
+
+    # Assert that output is None for stations with no latest_level data
+
+# def test_stations_level_over_threshold():
 
 # endregion

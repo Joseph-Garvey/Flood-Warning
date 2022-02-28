@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 # labelled axes
 # station name is plot title
 def plot_water_levels(stations, dates, levels):
+    #TODO check no larger than 6 plotted
     for i in range(stations.len):
         plt.subplot(1, stations.len(), i+1)
         plt.plot(dates, levels[i])    

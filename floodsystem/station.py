@@ -6,8 +6,6 @@ for manipulating/modifying station data
 
 """
 
-import datafetcher
-
 
 class MonitoringStation:
     """This class represents a river level monitoring station"""

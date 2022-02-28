@@ -23,7 +23,7 @@ def run():
     # Create list of top N stations
     selected_stations_list = stations_highest_rel_level(stations, 5)
 
-    # Create list of levels
+    # Create list of latest_level data for past 5 days
 
     # Plot
     plot_water_levels(selected_stations_list, date_list, levels)

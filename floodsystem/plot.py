@@ -11,7 +11,9 @@ def plot_water_levels(stations, dates, levels):
     for i in range(stations.len):
         plt.subplot(1, stations.len(), i + 1)
         plt.plot(dates, levels[i])
-        plt.plot(dates, stations.typical_range[0])
+        plt.plot(dates, stations[i].typical_range[0])
+        plt.plot(dates, stations[i].typical_range[1])
+
         # Add labels, rotate and add plot title
         plt.title(stations[i].name)
         plt.xlabel('Date')

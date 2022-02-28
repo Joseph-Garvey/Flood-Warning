@@ -23,6 +23,8 @@ def run():
     levels = []
 
     # Find station
+    #TODO #5 Fixing inconsistent historical data
+
     for station in selected_stations_list:
         # Create list of level data for past 10 days
         date_list, level_list = fetch_measure_levels(station.measure_id, dt=datetime.timedelta(days=dt))

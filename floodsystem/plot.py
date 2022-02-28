@@ -8,8 +8,9 @@ import matplotlib.pyplot as plt
 
 
 def plot_water_levels(stations, dates, levels):
-    for i in range(stations.len):
-        plt.subplot(1, stations.len(), i + 1)
+    # reminder TODO stations.len isnt a thing. is it len(stations)?
+    for i in range(len(stations)):
+        plt.subplot(1, len(stations), i + 1)
         plt.plot(dates, levels[i])
         plt.plot(dates, stations[i].typical_range[0])
         plt.plot(dates, stations[i].typical_range[1])

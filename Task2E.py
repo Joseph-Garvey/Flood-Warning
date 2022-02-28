@@ -15,32 +15,41 @@ def run():
 
     N = 5  # Number of stations
     dt = 10  # Number of days
-    dates = []
-    levels = []
-    final_station_list = []
+    dates = []  # empty list of date lists
+    levels = []  # empty list of level lists
+    final_station_list = []  # empty list of stations
 
-    # Create list of top N stations
     # pull first N with highest rel level
-    selected_stations_list = stations_highest_rel_level(stations, N)
+    selected_stations = stations_highest_rel_level(stations, N)
     # check consistency of historical data ie that it has some
-    for station in selected_stations_list:
+
+    counter = 0
+
+    for station in selected_stations:
+        while counter < N:
+            date_list, level_list = fetch_measure_levels(station.measure_id, dt=datetime.timedelta(days=dt))
+            if(len(date_list) != 0 or len(level_list) != 0):
+
+                # Append current station to final list, and append corresponding data to data lists
+                final_station_list.append(station)
+                dates.append(date_list)
+                levels.append(level_list)
+
+                counter += 1
+
+            else:
+                stations_highest_rel_level(stations, N + 1)
 
         # Create lists of dates & of level data for past N days
-        date_list, level_list = fetch_measure_levels(station.measure_id, dt=datetime.timedelta(days=dt))
 
-        if(len(date_list) != 0 or len(level_list) != 0):
             # if consistent, append to new list
             # if not consistent : pull highest rel level (currentlengthofllist +1)
 
             # check again but start at position of the inconsistent data +1
-            final_station_list.append(station)
-            dates.append(date_list)
-            levels.append(level_list)
 
         else:
-            stations_highest_rel_level(stations, N + 1)[N + 1]
 
-    # Plot
+            # Plot
     plot_water_levels(final_station_list, dates, levels)
 
 

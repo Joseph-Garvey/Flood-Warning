@@ -8,14 +8,17 @@ import matplotlib.pyplot as plt
 
 
 def plot_water_levels(stations, dates, levels):
+    #TODO #4 potential issue where dates of stations are not the same, i should not assume this.
     for i in range(len(stations)):
         plt.subplot(1, len(stations), i + 1)
-        plt.plot(dates, levels[i])
-        plt.plot(dates, stations[i].typical_range[0])
-        plt.plot(dates, stations[i].typical_range[1])
-
+        plt.plot(dates[i], levels[i])
+        plt.axhline(stations[i].typical_range[0])
+        plt.axhline(stations[i].typical_range[1])
         # Add labels, rotate and add plot title
-        plt.title(stations[i].name)
+        if(len(dates[i]) == 0 or len(levels[i]) == 0):
+            plt.title(stations[i].name + "[Data Unavailable]")
+        else:
+            plt.title(stations[i].name)
         plt.xlabel('Date')
         plt.ylabel('Water Level (m)')
         plt.xticks(rotation=45)

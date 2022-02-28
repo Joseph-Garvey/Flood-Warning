@@ -23,9 +23,9 @@ def stations_level_over_threshold(stations, tol):
     for station in stations:
 
         # Check if station has relative water level above tol
-        if (station.relative_water_level() != None) and (station.relative_water_level() > tol):
+        if (station.relative_water_level != None) and (station.relative_water_level > tol):
             # Create tuple
-            over_threshold_tuple = [station, station.relative_water_level()]
+            over_threshold_tuple = [station, station.relative_water_level]
 
             # Add tuple to list
             over_threshold_list.append(over_threshold_tuple)
@@ -58,7 +58,7 @@ def stations_highest_rel_level(stations, N):
     for station in stations:
 
         # Check if station has all available & consistent data
-        if station.relative_water_level() != None:
+        if station.relative_water_level != None:
 
             # Add station object to list
             at_risk_list.append(station)

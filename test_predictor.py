@@ -28,7 +28,7 @@ station_list = [station_A, station_B, station_C, station_D, station_E, station_F
 
 
 def test_predictor():
-    predictor(station_list, gradient_weight=0.5, rel_weight=0.5)
+    predictor(station_list, gradient_weight=0.5, rel_weight=0.5, abs_weight=)
 
     # assert that attribute type is a float
     for station in station_list:

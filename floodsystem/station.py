@@ -58,6 +58,7 @@ class MonitoringStation:
     # endregion
 
     # region Task 1F
+    @property
     def typical_range_consistent(self):
         """Checks the typical high/low range data for consistency.
 
@@ -91,7 +92,7 @@ class MonitoringStation:
             None if any data is unavailable or inconsistent"""
 
         # Check if water level data is consistent & available
-        if (self.latest_level == None) or (self.typical_range_consistent() == False):
+        if (self.latest_level == None) or (self.typical_range_consistent == False):
             rel_level = None
 
         else:

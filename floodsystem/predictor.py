@@ -1,18 +1,19 @@
 from .station import MonitoringStation
-from .analysis import polyfit, gradientcalc
 
 
-def predictor(stations, gradient_weight, rel_weight):
+def predictor(stations, gradient_weight, rel_weight, abs_weight):
     """assigns an attribute 'station_risk' to each MonitoringStation object based on a weighted sum of rel_water_level & gradient
 
     Parameters:
         stations = list of MonitoringStation objects \n
         gradient_weight = weight of gradient \n
         relative_weight = weight of rel_water_level
+        abs_weight = weight of absolute level difference from average of typical range values
     """
     for station in stations:
+
         station_risk = (gradient_weight * (station.der) + rel_weight *
-                        (station.relative_water_level)) / (gradient_weight + rel_weight)
+                        (station.relative_water_level) + abs_weight * (station.latest_level - (station.typical_range[0] + station.typical_range[1]) / 2)) / (gradient_weight + rel_weight)
         station.station_risk = station_risk
 
     return stations

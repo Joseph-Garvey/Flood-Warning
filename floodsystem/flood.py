@@ -6,6 +6,8 @@ import datetime
 # endregion
 
 # region Task 2B
+
+
 def stations_level_over_threshold(stations, tol):
     """returns a list of tuples, where each tuple holds (i) a station (object) at which the latest relative water level is over tol and (ii) the relative water level at the station. The returned list should be sorted by the relative level in descending order
 
@@ -25,7 +27,7 @@ def stations_level_over_threshold(stations, tol):
         # Check if station has relative water level above tol
         if (station.relative_water_level != None) and (station.relative_water_level > tol):
             # Create tuple
-            over_threshold_tuple = [station, station.relative_water_level]
+            over_threshold_tuple = (station, station.relative_water_level)
 
             # Add tuple to list
             over_threshold_list.append(over_threshold_tuple)
@@ -38,6 +40,8 @@ def stations_level_over_threshold(stations, tol):
 # endregion
 
 # region Task 2C
+
+
 def stations_highest_rel_level(stations, N):
     """Returns a list of the N station objects at which relative water level is highest, sorted in descending order by relative level
 
@@ -72,6 +76,7 @@ def stations_highest_rel_level(stations, N):
     # sort list by relative level in descending order
 # endregion
 
+
 def stations_highest_rel_level_consistent(source_stations, N, dt):
     """Returns rivers with highest relative level, but only those with historical data.
     Also returns historical data.
@@ -84,23 +89,23 @@ def stations_highest_rel_level_consistent(source_stations, N, dt):
 
     # pull first N with highest rel level
     stations = stations_highest_rel_level(source_stations, N)
-    
+
     i = 0
     while(len(stations_to_be_plotted) < N):
         # if we have searched as many items as we initially retrieved, retrieve one more than the current number pulled.
-        if(i >= N-1):
-            stations = stations_highest_rel_level(source_stations, i+2) 
+        if(i >= N - 1):
+            stations = stations_highest_rel_level(source_stations, i + 2)
             # this could just as easily be len(stations) + 1 instead of i
-        #retrieve list
-        date_list, level_list = fetch_measure_levels(stations[i].measure_id, dt=datetime.timedelta(days=dt)) 
-        # check validity  
+        # retrieve list
+        date_list, level_list = fetch_measure_levels(stations[i].measure_id, dt=datetime.timedelta(days=dt))
+        # check validity
         if(len(date_list) == 0 or len(level_list) == 0):
             i += 1
-            continue # skip if invalid
+            continue  # skip if invalid
         # add to list if valid
         stations_to_be_plotted.append(stations[i])
         dates.append(date_list)
         levels.append(level_list)
         i += 1
-    
+
     return stations_to_be_plotted, dates, levels

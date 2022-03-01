@@ -13,6 +13,7 @@ Format of output:
 
 
 def run():
+
     # Build list of stations
     stations = build_station_list()
 

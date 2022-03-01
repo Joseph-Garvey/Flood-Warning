@@ -20,4 +20,4 @@ def polyfit(dates, levels, p):
 
 def gradientcalc(poly, t):
     der = np.polyder(poly)
-    return der[0](t)
+    return der(t)

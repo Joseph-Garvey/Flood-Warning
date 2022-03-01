@@ -32,7 +32,7 @@ def assigning_risk(stations, severe_threshold, high_threshold, moderate_threshol
             risk_label = "severe"
         elif station.station_risk > high_threshold:
             risk_label = "high"
-        elif station.station_risk > moderate_threshold:
+        elif (station.station_risk > moderate_threshold) or station.latest_level > station.typical_range[1]:
             risk_label = "moderate"
         else:
             risk_label = "low"

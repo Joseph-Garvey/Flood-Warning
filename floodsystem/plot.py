@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as dt
 import numpy as np
 
+
 # region Task 2E
 # water level data against time for a station
 # include typical high, low lines
@@ -39,6 +40,10 @@ def plot_water_level_with_fit(stations, dates, levels, funcs):
         plt.ylabel('Water Level (m)')
         plt.xticks(rotation=45)
         math_date = dt.date2num(dates[i])
+        #debug
+        #test_dates = math_date - math_date[0]
+        #derv = np.polyder(funcs[i])
+        #plt.plot(dates[i], derv(math_date - math_date[0]))
         plt.plot(dates[i], funcs[i](math_date - math_date[0]))
         plt.title(stations[i].name)
     plt.suptitle("Measured Level v Best-Fit for Rivers with Highest Relative Level.")

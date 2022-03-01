@@ -109,3 +109,24 @@ def stations_highest_rel_level_consistent(source_stations, N, dt):
         i += 1
 
     return stations_to_be_plotted, dates, levels
+
+
+def stations_historical(stations, dt):
+    """RETURNS: List of Stations, List of Dates, List of Levels"""
+
+    stations_new = []  # empty new list of stations
+    dates = []  # empty list of date lists
+    levels = []  # empty list of level lists
+
+    # retrieve list
+    for i in range(len(stations)):
+        date_list, level_list = fetch_measure_levels(stations[i].measure_id, dt=datetime.timedelta(days=dt))
+        # check validity
+        if(len(date_list) == 0 or len(level_list) == 0):
+            continue  # skip if invalid
+        # add to list if valid
+        stations_new.append(stations[i])
+        dates.append(date_list)
+        levels.append(level_list)
+
+    return stations_new, dates, levels

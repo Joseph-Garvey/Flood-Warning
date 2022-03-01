@@ -128,5 +128,6 @@ def stations_historical(stations, dt):
         stations_new.append(stations[i])
         dates.append(date_list)
         levels.append(level_list)
+        print("Fetched station " + str(i) + " out of " + str(len(stations)) + " stations.")
 
     return stations_new, dates, levels

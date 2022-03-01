@@ -19,7 +19,7 @@ def run():
     update_water_levels(stations)
     # flood.py retrieve all data [Irfan]
     simduration = 2
-    #stations, dates, levels = stations_highest_rel_level_consistent(stations, 20, simduration)#stations historical for all
+    #stations, dates, levels = stations_highest_rel_level_consistent(stations, 200, simduration)#stations historical for all
     #stations, dates, levels = stations_highest_rel_level_consistent(stations, len(stations), simduration)#stations historical for all
     stations, dates, levels = stations_historical(stations, simduration)
     # compute poly, d for each station

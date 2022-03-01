@@ -11,9 +11,13 @@ import matplotlib.pyplot as plt
             # shift of time (date) axis
 #task 2F
 #TODO #2 return correct object
+#TODO #9 test this whether returns correct type
 def polyfit(dates, levels, p):
     dates = dt.date2num(dates)
     p_coeff = np.polyfit(dates - dates[0], levels, p)
     poly = np.poly1d(p_coeff)
     return poly, dt.date2num(dates[0])
 
+def gradientcalc(poly, t):
+    der = np.polyder(poly)
+    return der(t)

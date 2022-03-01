@@ -30,6 +30,10 @@ class MonitoringStation:
 
         self.latest_level = None
 
+        self.der = None
+        self.station_risk = None
+        self.risk_label = None
+
     def __repr__(self):
         d = "Station name:     {}\n".format(self.name)
         d += "   id:            {}\n".format(self.station_id)

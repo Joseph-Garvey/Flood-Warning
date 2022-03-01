@@ -75,7 +75,7 @@ def test_inconsistent_typical_range_stations():
 
 def test_relative_water_level():
 
-    # Create list of dummy stations, 1 with consistent & available data, 1 with empty data, 1 with inconsistent low/high data
+    # Create list of dummy stations, 1 with consistent & available data, 1 with empty level data, 1 with empty typical data, 1 with inconsistent low/high data
     station_A = MonitoringStation('ID A', 'Measurement ID A', 'Name A', (10.0, 20.0), None, 'Medium River', 'Town A')
     station_A.latest_level = 15.0
 
@@ -85,16 +85,17 @@ def test_relative_water_level():
     station_C = MonitoringStation('ID C', 'Measurement ID C', 'Name C', (0.0, 20.0), (2.0, 1.0), 'Big River', 'Town C')
     station_C.latest_level = 10.0
 
-    #station_list = [station_A, station_B, station_C]
+    station_D = MonitoringStation('ID D', 'Measurement ID D', 'Name D', (0.0, 20.0), (1.0, 2.0), 'Big River', 'Town C')
+    station_D.latest_level = 1.5
 
     # Assert that output is a float for consistent stations
-    assert type(station_A.relative_water_level) == float
+    assert type(station_D.relative_water_level) == float
     # Assert that output value is as expected
-    #assert station_A.relative_water_level == 0.5
-    # Assert that output is None for stations with inconsistent data
+    assert station_D.relative_water_level == 0.5
 
-    # Assert that output is None for stations with no latest_level data
-
-# def test_stations_level_over_threshold():
+    # Assert that output is None for stations with inconsistent or unavailable data
+    assert station_A.relative_water_level == None
+    assert station_B.relative_water_level == None
+    assert station_C.relative_water_level == None
 
 # endregion

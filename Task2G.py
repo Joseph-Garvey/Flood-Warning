@@ -1,5 +1,6 @@
 import datetime
 from operator import attrgetter
+import time
 from floodsystem.analysis import gradientcalc, polyfit
 from floodsystem.flood import stations_highest_rel_level_consistent, stations_historical
 from floodsystem.plot import plot_water_level_with_fit, plot_water_levels
@@ -8,6 +9,7 @@ from floodsystem.predictor import predictor, assigning_risk
 import matplotlib.dates as dt
 
 def run():
+    tic = time.perf_counter()
     # Build list of stations
     stations = build_station_list()
     # filter stations to those with consistent data
@@ -17,8 +19,9 @@ def run():
     update_water_levels(stations)
     # flood.py retrieve all data [Irfan]
     simduration = 2
-    stations, dates, levels = stations_highest_rel_level_consistent(stations, 10, simduration)#stations historical for all
-    #stations, dates, levels = stations_historical(stations, 0.5)
+    #stations, dates, levels = stations_highest_rel_level_consistent(stations, 20, simduration)#stations historical for all
+    #stations, dates, levels = stations_highest_rel_level_consistent(stations, len(stations), simduration)#stations historical for all
+    stations, dates, levels = stations_historical(stations, simduration)
     # compute poly, d for each station
     for i in range(len(stations)):
         poly = polyfit(dates[i], levels[i], 4)
@@ -37,10 +40,11 @@ def run():
     # Sort by descending risk
     stations.sort(key=attrgetter('station_risk'), reverse=True)
     for station in stations:
-        print(station.name, str(station.station_risk))
+        if((station.risk_label == "severe") or (station.risk_label == "high")):
+            print(station.name, station.risk_label)
     # should have done moderate if above typical high
-    # TODO Relative to usual
-
+    toc = time.perf_counter()
+    print(f"Warned floods in {toc - tic:0.4f} seconds")
 
 if __name__ == "__main__":
     print("*** Task 2G: CUED Part IA Flood Warning System ***")

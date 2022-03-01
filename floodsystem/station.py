@@ -30,6 +30,10 @@ class MonitoringStation:
 
         self.latest_level = None
 
+        self.der = None
+        self.station_risk = None
+        self.risk_label = None
+
     def __repr__(self):
         d = "Station name:     {}\n".format(self.name)
         d += "   id:            {}\n".format(self.station_id)
@@ -54,6 +58,7 @@ class MonitoringStation:
     # endregion
 
     # region Task 1F
+    @property
     def typical_range_consistent(self):
         """Checks the typical high/low range data for consistency.
 
@@ -87,7 +92,7 @@ class MonitoringStation:
             None if any data is unavailable or inconsistent"""
 
         # Check if water level data is consistent & available
-        if (self.latest_level == None) or (self.typical_range_consistent() == False):
+        if (self.latest_level == None) or (self.typical_range_consistent == False):
             rel_level = None
 
         else:
@@ -111,7 +116,7 @@ def inconsistent_typical_range_stations(stations):
     for station in stations:
 
         # Check if station has inconsistent data for typical range
-        if station.typical_range_consistent() == False:
+        if station.typical_range_consistent == False:
 
             # Add station to list
             incons_stations.append(station)

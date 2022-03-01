@@ -38,9 +38,9 @@ def test_typical_range_consistent():
     station_C = MonitoringStation('ID C', 'Measurement ID C', 'Name C', (0.0, 20.0), (2.0, 1.0), 'Big River', 'Town C')
 
     # Assert A & C are False, B is True
-    assert station_A.typical_range_consistent() == False
-    assert station_B.typical_range_consistent() == True
-    assert station_C.typical_range_consistent() == False
+    assert station_A.typical_range_consistent == False
+    assert station_B.typical_range_consistent == True
+    assert station_C.typical_range_consistent == False
 
 # Testing Task 1F part ii - irfan
 
@@ -63,8 +63,8 @@ def test_inconsistent_typical_range_stations():
     assert len(inconsistent_typical_range_stations(station_list)) == 2
 
     # Assert that all are False
-    assert inconsistent_typical_range_stations(station_list)[0].typical_range_consistent() == False
-    assert inconsistent_typical_range_stations(station_list)[1].typical_range_consistent() == False
+    assert inconsistent_typical_range_stations(station_list)[0].typical_range_consistent == False
+    assert inconsistent_typical_range_stations(station_list)[1].typical_range_consistent == False
 
 # endregion
 

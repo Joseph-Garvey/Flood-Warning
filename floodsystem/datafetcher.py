@@ -134,7 +134,9 @@ def fetch_measure_levels(measure_id, dt):
         d = dateutil.parser.parse(measure['dateTime'])
 
         # Append data
-        dates.append(d)
-        levels.append(measure['value'])
-
+        try:
+            levels.append(measure['value'])
+            dates.append(d)
+        except:
+            None
     return dates, levels

@@ -1,6 +1,8 @@
 # region imports
 from .station import MonitoringStation
 from operator import attrgetter
+from .datafetcher import fetch_measure_levels
+import datetime
 # endregion
 
 # region Task 2B
@@ -69,3 +71,36 @@ def stations_highest_rel_level(stations, N):
 
     # sort list by relative level in descending order
 # endregion
+
+def stations_highest_rel_level_consistent(source_stations, N, dt):
+    """Returns rivers with highest relative level, but only those with historical data.
+    Also returns historical data.
+
+    RETURNS: List of Stations, List of Dates, List of Levels
+    """
+    stations_to_be_plotted = []  # empty list of stations
+    dates = []  # empty list of date lists
+    levels = []  # empty list of level lists
+
+    # pull first N with highest rel level
+    stations = stations_highest_rel_level(source_stations, N)
+    
+    i = 0
+    while(len(stations_to_be_plotted) < N):
+        # if we have searched as many items as we initially retrieved, retrieve one more than the current number pulled.
+        if(i >= N-1):
+            stations = stations_highest_rel_level(source_stations, i+2) 
+            # this could just as easily be len(stations) + 1 instead of i
+        #retrieve list
+        date_list, level_list = fetch_measure_levels(stations[i].measure_id, dt=datetime.timedelta(days=dt)) 
+        # check validity  
+        if(len(date_list) == 0 or len(level_list) == 0):
+            i += 1
+            continue # skip if invalid
+        # add to list if valid
+        stations_to_be_plotted.append(stations[i])
+        dates.append(date_list)
+        levels.append(level_list)
+        i += 1
+    
+    return stations_to_be_plotted, dates, levels
